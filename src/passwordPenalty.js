@@ -7,10 +7,14 @@
  */
 export default function penaltyPoints(password = "") {
   // The following line ensures, that password is always a string, like the number 128 -> string "128"
-  if (typeof password !== "string") password = String(password);
-
-  // * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  // * * * INSERT YOUR CODE HERE * * * * * * * * * * * * * *
-  // * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  //
+  if(password === null || password === undefined) return 0
+  let penaltyPoints = 0;
+  const regex = /(.)\1+/g;
+  const matches = password.match(regex); 
+  if (matches) {
+    matches.forEach(match => {
+      penaltyPoints += match.length === 2 ? 1 : 2;
+    });
+  }
+  return penaltyPoints;
 }
