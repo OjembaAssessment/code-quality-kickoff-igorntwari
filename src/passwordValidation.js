@@ -11,6 +11,19 @@ export default function isValidPassword(password = "") {
   if (typeof password !== "string") password = String(password);
 
   // * * * YOUR CODE GOES IN HERE ... * * *
+  if (password.length !== 10) return false;
+  if (!/^[a-zA-Z0-9]+$/.test(password)) return false;
+  if (/[@/#]/.test(password)) return false;
+  if (!/[a-z]/.test(password) || !/[A-Z]/.test(password)) return false;
+  if (!/[0-9]/.test(password)) return false;
+  let ascending = "1234567890";
+  let descending = "9876543210";
+  for (let i = 0; i <= password.length - 3; i++) {
+      let substring = password.substring(i, i + 3);
+      if (ascending.includes(substring) || descending.includes(substring)) return false;
+  }
+  if (forbiddenPasswords.includes(password)) return false;
+
   /*
    * if (password is not exactly 10 digits or characters...) {
    *   return ...;
