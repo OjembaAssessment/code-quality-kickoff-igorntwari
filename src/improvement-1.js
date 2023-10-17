@@ -5,13 +5,7 @@
  */
 
 // FUNCTION 1
-export default function cntRbt(ls) {
-  let cnt = 0;
-  for (const elemt of ls) {
-    if (elemt === "R") {
-      cnt++;
-    }
-  }
-  return cnt;
+export default function cntRbt(letters) {
+  return letters.split('').filter((letter) => letter === 'R').length
 }
 
